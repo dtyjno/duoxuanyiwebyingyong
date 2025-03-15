@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <h1>{{ question.question_text }}</h1>
+    <ul>
+    {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }}</li>
+    {% endfor %}
+    </ul>
+    <!-- 表单提交到指定URL，使用POST方法 -->
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+      {% csrf_token %}  <!-- Django安全机制，防止CSRF攻击 -->
+      
+      <fieldset>  <!-- 表单分组容器 -->
+          <legend>  <!-- 分组的标题 -->
+              <h1>{{ question.question_text }}</h1>  <!-- 显示问题文本 -->
+          </legend>
+          
+          <!-- 错误提示 -->
+          {% if error_message %}
+          <p><strong>{{ error_message }}</strong></p>  <!-- 用粗体显示错误信息 -->
+          {% endif %}
+          
+          <!-- 遍历所有选项 -->
+          {% for choice in question.choice_set.all %}
+              <!-- 单选按钮 -->
+              <input type="radio" 
+                    name="choice"  
+                    id="choice{{ forloop.counter }}"  
+                    value="{{ choice.id }}"> 
+                  <!-- 同一组单选按钮 -->
+                  <!-- 唯一ID生成（choice1/choice2...） -->
+                  <!-- 提交的值为选项ID -->
+              <!-- 关联标签 -->
+              <label for="choice{{ forloop.counter }}">
+                  {{ choice.choice_text }}  <!-- 显示选项文本 -->
+              </label><br>
+          {% endfor %}
+      </fieldset>
+      
+      <input type="submit" value="Vote">  <!-- 提交按钮 -->
+    </form>
+  </body>
+</html>

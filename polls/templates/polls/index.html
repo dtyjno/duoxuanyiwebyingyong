@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <div class='ribbon'>
+      {% if username is None%}
+          <a href="{% url 'polls:login' %}"><span>登录</span></a>
+          <a href="{% url 'polls:register' %}"><span>注册</span></a>
+          <a href="{% url 'polls:index' %}"><span>首页</span></a>
+
+      {% else %}
+          <a><span>{{username}}你好！</span></a>
+          <a href="{% url 'polls:logout' %}"><span>退出登录</span></a>
+          <a href="{% url 'polls:drone_system' %}"><span>进入系统</span></a>
+          
+      {% endif %}
+  </div>
+    {% if latest_question_list %}
+      <ul>
+        {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No polls are available.</p>
+    {% endif %}
+  </body>
+</html>

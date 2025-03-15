@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, user-scalable=no, width=device-width"
+    />
+    <title>My test page</title>
+    <style>
+      html,
+      body,
+      #container {
+        width: 100%;
+        height: 100%;
+      }
+      </style>
+  </head>
+  <body>
+    <div class='ribbon'>
+      {% if username is None%}
+          <a href="{% url 'polls:login' %}"><span>登录</span></a>
+          <a href="{% url 'polls:register' %}"><span>注册</span></a>
+          <a href="{% url 'polls:index' %}"><span>首页</span></a>
+
+      {% else %}
+          <a><span>{{username}}你好！</span></a>
+          <a href="{% url 'polls:logout' %}"><span>退出登录</span></a>
+
+
+      {% endif %}
+    </div>
+    {% if latest_question_list %}
+      <ul>
+        {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No polls are available.</p>
+    {% endif %}
+
+    <!-- 无人机系统页面内容 -->
+    {% block content_map_1 %}
+    {{ map_config|json_script:"map-config" }}
+    {{ geo_json|json_script:"geo-data" }}
+    {{ targets_geojson|json_script:"targets-geojson" }}
+    <div id="container" class="map-container"></div>
+    
+    {# 安全配置必须放在API加载之前 #}
+    <script type="text/javascript">
+      window._AMapSecurityConfig = { 
+        securityJsCode: "fc6ed7655310a89e5173ac881d053f37" 
+      };
+    </script>
+    <script src="https://webapi.amap.com/loader.js"></script>
+    
+    <script type="text/javascript">
+      // 配置加载优化
+      (async function initMap() {
+        try {
+          // 配置解析
+          const mapConfig = JSON.parse(document.getElementById('map-config').textContent);
+          const geoData = JSON.parse(document.getElementById('geo-data').textContent);
+          const targetsGeoJson = JSON.parse(document.getElementById('targets-geojson').textContent);
+    
+          // 异步加载AMap模块
+          const AMap = await AMapLoader.load({
+            key: mapConfig.key,
+            version: "2.0",
+            plugins: ['AMap.InfoWindow', 'AMap.Scale', 'AMap.ToolBar'], // 按需加载插件
+            param: { _t: Date.now() } // 防止缓存
+          });
+    
+          // 验证坐标有效性
+          let center = mapConfig.center;
+          console.log('center:', center);
+
+          // 地图初始化
+          const map = new AMap.Map("container", {
+            viewMode: '3D',
+            zoom: mapConfig.zoom || 13,
+            center: mapConfig.center || [116.39, 39.92],
+            resizeEnable: true,
+            ...mapConfig.advancedOptions  // 扩展高级配置
+          });
+          
+    
+          // // 标记点生成函数
+          // const createMarker = (position, config) => {
+          //   const marker = new AMap.Marker({
+          //     position: Array.isArray(position) ? position : [position.lng, position.lat],
+          //     icon: config.icon || '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+          //     offset: new AMap.Pixel(-13, -30),
+          //     ...config.markerOptions
+          //   });
+          //   return marker;
+          // };
+    
+          // // 创建主标记点
+          // const mainMarker = createMarker(mapConfig.center, mapConfig);
+          // map.add(mainMarker);
+    
+          // // 信息窗口初始化
+          // const infoWindow = new AMap.InfoWindow({
+          //   isCustom: true,
+          //   content: mapConfig.infoWindowContent || '<div class="cus_info_window">HELLO,AMAP!</div>',
+          //   offset: new AMap.Pixel(16, -45)
+          // });
+    
+          // // 事件处理
+          // const handleMarkerClick = (e) => {
+          //   infoWindow.open(map, e.target.getPosition());
+          // };
+          // mainMarker.on('click', handleMarkerClick);
+    
+          // // 折线生成
+          // if (geoData?.features?.length) {
+          //   const linePath = geoData.features[0].geometry.coordinates;
+          //   const polyline = new AMap.Polyline({
+          //     path: linePath,
+          //     strokeColor: "#3366FF",
+          //     strokeWeight: 5,
+          //     strokeStyle: "solid",
+          //     ...mapConfig.polylineOptions
+          //   });
+          //   map.add(polyline);
+          //   map.setFitView(polyline);  // 自动适应视图
+          // }
+    
+          // // 加载目标地理数据
+          // if (targetsGeoJson?.features) {
+          //   targetsGeoJson.features.forEach(feature => {
+          //     const marker = createMarker(feature.geometry.coordinates, {
+          //       icon: feature.properties.icon
+          //     });
+          //     map.add(marker);
+          //   });
+          // }
+
+          
+          // // 创建无人机标记层
+          // const markers = geoData.features.map(feature => {
+          //     const props = feature.properties;
+              
+          //     return new AMap.Marker({
+          //         position: feature.geometry.coordinates,
+          //         content: createMarkerContent(props),
+          //         extData: props
+          //     });
+          // });
+
+           // 标记点生成函数
+          const createMarker = (position, config) => {
+            const marker = new AMap.Marker({
+              position: Array.isArray(position) ? position : [position.lng, position.lat],
+              icon: config.icon || '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png',
+              offset: new AMap.Pixel(-13, -30),
+              ...config.markerOptions
+            });
+            return marker;
+          };
+
+          
+          // 批量添加无人机标记
+          if(markers.length > 0) {
+              map.add(markers);
+              map.setFitView(markers);
+              
+              // 事件绑定
+              markers.forEach(marker => {
+                  marker.on('click', e => {
+                      const infoWindow = new AMap.InfoWindow({
+                          content: createInfoContent(e.target.getExtData()),
+                          offset: new AMap.Pixel(0, -30)
+                      });
+                      infoWindow.open(map, e.target.getPosition());
+                  });
+              });
+          }
+
+          // // 实时更新无人机逻辑
+          // setInterval(async () => {
+          //     try {
+          //         const response = await fetch('/api/drones/');
+          //         const {data} = await response.json();
+                  
+          //         // 更新标记位置和状态
+          //         markers.forEach((marker, index) => {
+          //             const newData = data[index];
+          //             marker.setPosition([newData.longitude, newData.latitude]);
+          //             marker.setContent(createMarkerContent(newData));
+          //         });
+          //     } catch (error) {
+          //         console.error('数据更新失败:', error);
+          //     }
+          // }, 30000);
+
+          // 标记内容生成器
+          function createMarkerContent(data) {
+              return `
+                  <div class="drone-marker ${data.status.class}">
+                      <span class="battery">${data.battery}%</span>
+                      <div class="pulse"></div>
+                  </div>
+              `;
+          }
+
+          // 信息窗口生成器
+          function createInfoContent(data) {
+              return `
+                  <div class="drone-info">
+                      <h3>${data.sn}</h3>
+                      <div class="status ${data.status.class}">${data.status.text}</div>
+                      <ul>
+                          <li>高度: ${data.altitude}m</li>
+                          <li>最后更新: ${new Date(data.last_update).toLocaleString()}</li>
+                      </ul>
+                      <a href="${data.details_url}" target="_blank">详细报告</a>
+                  </div>
+              `;
+          }
+
+
+
+
+
+          // // 添加目标标记
+          const targetsData = JSON.parse('{{ targets_geojson|escapejs }}');
+          const targetMarkers = targetsData.features.map(feature => {
+            return new AMap.Marker({
+              position: feature.geometry.coordinates,
+              content: createTargetMarker(feature.properties),
+              extData: feature.properties
+            });
+          });
+
+          // // 添加无人机轨迹
+          // const dronePaths = targetsData.features.flatMap(feature => {
+          //   return feature.properties.drones.map(drone => {
+          //     return new AMap.Polyline({
+          //       path: [
+          //         [drone.current_lng, drone.current_lat],  // 无人机当前位置
+          //         feature.geometry.coordinates             // 目标位置
+          //       ],
+          //       strokeColor: '#1890ff',
+          //       strokeWeight: 2
+          //     });
+          //   });
+          // });
+
+          // // 添加图层
+          // map.add([...targetMarkers, ...dronePaths]);
+          // map.setFitView();
+
+          // 信息窗口模板
+          const infoWindow = new AMap.InfoWindow({
+            isCustom: true,
+            offset: new AMap.Pixel(0, -35)
+          });
+
+          // 点击事件处理
+          targetMarkers.forEach(marker => {
+            marker.on('click', e => {
+              const data = e.target.getExtData();
+              infoWindow.setContent(createInfoContent(data));
+              infoWindow.open(map, e.target.getPosition());
+            });
+          });
+
+          function createTargetMarker(data) {
+            return `
+              <div class="target-marker ${getStatusClass(data.status)}">
+                <div class="pulse"></div>
+                <span class="badge">${data.drones.length}</span>
+              </div>
+            `;
+          }
+
+          function createInfoContent(data) {
+            return `
+              <div class="mission-info">
+                <h3>${data.name}</h3>
+                <div class="status ${getStatusClass(data.status)}">
+                  ${getStatusText(data.status)}
+                </div>
+                
+                <div class="media-grid">
+                  ${data.drones.map(drone => `
+                    <div class="media-item">
+                      ${drone.thumbnail ? `
+                        <img src="${drone.thumbnail}" 
+                            onclick="playVideo('${drone.video}')"
+                            class="video-thumb">
+                      ` : `
+                        <div class="no-thumb">无预览</div>
+                      `}
+                      <div class="drone-info">
+                        <span class="sn">${drone.sn}</span>
+                        <span class="time">${drone.time}</span>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `;
+          }
+
+          function getStatusClass(statusCode) {
+            const statusMap = {
+              0: 'pending',
+              1: 'active',
+              2: 'completed',
+              3: 'failed'
+            };
+            return statusMap[statusCode] || 'unknown';
+          }
+          
+            // 添加控件
+          map.addControl(new AMap.Scale());
+          map.addControl(new AMap.ToolBar());
+          map.addControl(new AMap.InfoWindow());
+
+        } catch (error) {
+          console.error('Map initialization failed:', error);
+          // 可以添加可视化错误提示
+        }
+      })();
+    </script>
+    {% endblock content_map_1 %}
+    
+<!--     
+    
+    {{ map_config|json_script:"map-config" }}
+    {{ geo_json|json_script:"geo-data" }}
+    {{ targets_geojson|json_script:"targets-geojson" }}
+     -->
+    <!-- 确保父容器无样式冲突 -->
+    <!-- <div style="height: 70vh; position: relative; z-index: 1;">
+      <div id="map-container" style="height: 65vh; min-height: 500px; width: 100%;"></div>
+    </div>
+    
+    <script>
+    (async function() {
+        // 从DOM读取配置
+        const mapConfig = JSON.parse(document.getElementById('map-config').textContent);
+        const geoData = JSON.parse(document.getElementById('geo-data').textContent);
+        const targetsGeoJson = JSON.parse(document.getElementById('targets-geojson').textContent);
+    
+        try {
+            // 异步加载高德地图API（添加防缓存参数）
+            const AMap = await AMapLoader.load({
+                key: "fe97d423fdb0de8f8bc51bfc01b576b5",
+                version: "2.0",
+                plugins: ['AMap.Scale', 'AMap.ToolBar'],
+                param: { _t: Date.now() } // 关键：防止缓存
+            });
+    
+            // 验证坐标有效性
+            let center = mapConfig.default_center;
+            if (geoData.features?.length > 0) {
+                const [lng, lat] = geoData.features[0].geometry.coordinates;
+                if (Math.abs(lng) <= 180 && Math.abs(lat) <= 85) {
+                    center = [lng, lat];
+                } else {
+                    console.error("坐标超出有效范围:", [lng, lat]);
+                    center = [116.397428, 39.90923]; // 默认坐标
+                }
+            }
+    
+            // 初始化地图
+            const map = new AMap.Map("map-container", {
+                viewMode: '3D',
+                zoom: mapConfig.zoom_level || 10,
+                center: center
+            });
+    
+            // 监听地图加载完成事件
+            map.on('complete', () => {
+                console.log("地图瓦片加载完成！");
+                map.setFitView();
+            });
+    
+            // 添加控件
+            map.addControl(new AMap.Scale());
+            map.addControl(new AMap.ToolBar());
+    
+        } catch (error) {
+            console.error("地图初始化失败:", error);
+        }
+    })();
+    </script> -->
+    
+    {% block content %}
+    <div class="container mt-4">
+        <!-- 状态过滤导航 -->
+        <div class="mb-4">
+            <div class="btn-group">
+                <a href="?status=" class="btn btn-outline-secondary {% if not current_status %}active{% endif %}">
+                    全部状态
+                </a>
+                {% for value, label in status_choices %}
+                <a href="?status={{ value }}" 
+                   class="btn btn-outline-secondary {% if current_status == value|stringformat:'s' %}active{% endif %}">
+                    {{ label }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    
+        <!-- 无人机信息表格 -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">我的无人机列表</h4>
+            </div>
+            
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>无人机SN</th>
+                                <th>机场SN</th>
+                                <th>状态</th>
+                                <th>位置信息</th>
+                                <th>电量</th>
+                                <th>最后更新时间</th>
+                                <th>详细操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for drone in drones %}
+                            <tr>
+                                <td>{{ drone.drone_sn }}</td>
+                                <td>{{ drone.dock_sn }}</td>
+                                <td>
+                                    <span class="badge 
+                                        {% if drone.dock_status == 0 %}bg-success
+                                        {% elif drone.dock_status == 4 %}bg-primary
+                                        {% elif drone.dock_status == -1 %}bg-secondary
+                                        {% else %}bg-warning{% endif %}">
+                                        {{ drone.get_dock_status_display }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        经度: {{ drone.longitude|floatformat:4 }}<br>
+                                        纬度: {{ drone.latitude|floatformat:4 }}<br>
+                                        高度: {{ drone.height }}米
+                                    </small>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar 
+                                            {% if drone.capacity_percent > 50 %}bg-success
+                                            {% elif drone.capacity_percent > 20 %}bg-warning
+                                            {% else %}bg-danger{% endif %}" 
+                                            role="progressbar" 
+                                            aria-valuenow="{{ drone.capacity_percent }}" 
+                                            aria-valuemin="0" 
+                                            aria-valuemax="100">
+                                            {{ drone.capacity_percent }}%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{ drone.updated_at|date:"Y-m-d H:i" }}
+                                </td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-info-circle"></i> 详情
+                                    </a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="7" class="text-center py-4 text-muted">
+                                    <i class="bi bi-cloud-upload" style="font-size: 2rem;"></i>
+                                    <p class="mt-2">暂无无人机数据</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    
+  </body>
+</html>

@@ -1,0 +1,17 @@
+# config/default.yaml示例
+drone_id: 1 # 替换为实际的无人机ID
+
+vision:
+  camera_index: 0
+  resolution: [640, 480]
+  fps: 30
+  model_path: "models/yolov5n.onnx"
+
+drone_hardware:
+  base_url: "https://all.xinkongan.com"  # 替换为实际的API基础地址
+  app_id: "0019f03b-b23b-427b-a924-6486b14e9f07"  # 替换为实际的appId
+  app_secret: "7736ae85-60d9-48a1-aa43-48ba23c18a89"  # 替换为实际的appSecret
+  device_sn: "1581F5FJC24BW00D5JP3" # 替换为实际的设备 SN
+  mission_id: "1" # 替换为实际的任务ID
+
+

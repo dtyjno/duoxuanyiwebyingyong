@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    {# 投票问题详情页模板 #}
+    {# 显示问题标题和所有选项的投票结果 #}
+
+    {# 显示当前投票问题的标题 #}
+    <h1>{{ question.question_text }}</h1>
+
+    {# 投票结果列表区域 #}
+    <ul>
+    {# 遍历该问题的所有选项对象 #}
+    {% for choice in question.choice_set.all %}
+        {# 显示单个选项的文本和得票数 #}
+        {# pluralize过滤器：当votes>1时自动添加"s"后缀 #}
+        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    {% endfor %}
+    </ul>
+
+    {# 再次投票的链接 #}
+    {# 使用url模板标签生成指向投票详情页的URL #}
+    {# 'polls:detail' 是命名空间URL，question.id 是参数 #}
+    <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+  </body>
+</html>

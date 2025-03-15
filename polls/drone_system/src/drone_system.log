@@ -1,0 +1,138 @@
+23:09:28.105 - DEBUG - Authenticating with https://all.xinkongan.com/prod-api/admin-api/system/oauth2/token
+23:09:28.106 - DEBUG - Starting new HTTPS connection (1): all.xinkongan.com:443
+23:09:28.290 - DEBUG - https://all.xinkongan.com:443 "POST /prod-api/admin-api/system/oauth2/token HTTP/1.1" 200 None
+23:09:28.291 - DEBUG - Access Token Response Status Code: 200
+23:09:28.291 - INFO - 认证成功，获取到访问令牌: e1e651c327ab44a38a2bae054764837e, 刷新令牌: 7e3af4d88ac1419a899830eb048d8c33, 过期时间: 37324799999
+23:09:28.291 - DEBUG - Using selector: EpollSelector
+23:09:28.292 - DEBUG - Starting new HTTPS connection (1): all.xinkongan.com:443
+23:09:28.326 - DEBUG - = connection is CONNECTING
+23:09:28.387 - DEBUG - > GET /socket/connect/5/e1e651c327ab44a38a2bae054764837e HTTP/1.1
+23:09:28.387 - DEBUG - > Host: all.xinkongan.com
+23:09:28.387 - DEBUG - > Upgrade: websocket
+23:09:28.387 - DEBUG - > Connection: Upgrade
+23:09:28.387 - DEBUG - > Sec-WebSocket-Key: pLlg635ChrS2s3PGGKrsLQ==
+23:09:28.387 - DEBUG - > Sec-WebSocket-Version: 13
+23:09:28.387 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+23:09:28.387 - DEBUG - > User-Agent: Python/3.12 websockets/15.0
+23:09:28.406 - DEBUG - < HTTP/1.1 101 
+23:09:28.406 - DEBUG - < Server: nginx/1.27.4
+23:09:28.406 - DEBUG - < Date: Tue, 04 Mar 2025 15:09:28 GMT
+23:09:28.407 - DEBUG - < Connection: upgrade
+23:09:28.407 - DEBUG - < Vary: Origin
+23:09:28.407 - DEBUG - < Vary: Access-Control-Request-Method
+23:09:28.407 - DEBUG - < Vary: Access-Control-Request-Headers
+23:09:28.407 - DEBUG - < trace-id: 
+23:09:28.407 - DEBUG - < Upgrade: websocket
+23:09:28.407 - DEBUG - < Sec-WebSocket-Accept: HwgTdDwQc1v4edDSImI+ipCZlTI=
+23:09:28.407 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate;client_max_window_bits=15
+23:09:28.407 - DEBUG - < X-Content-Type-Options: nosniff
+23:09:28.407 - DEBUG - < X-XSS-Protection: 1; mode=block
+23:09:28.407 - DEBUG - < Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+23:09:28.407 - DEBUG - < Pragma: no-cache
+23:09:28.407 - DEBUG - < Expires: 0
+23:09:28.407 - DEBUG - = connection is OPEN
+23:09:28.407 - INFO - WebSocket连接成功建立
+23:09:28.425 - DEBUG - https://all.xinkongan.com:443 "GET /prod-api/open-api/base/live/getRtmp?sn=1581F5FJC24BW00D5JP3 HTTP/1.1" 200 None
+23:09:28.426 - DEBUG - 直播地址响应状态码: 200
+23:09:28.426 - DEBUG - 直播地址响应内容: {"code":0,"data":{"url":"rtmp://alg.xinkongan.com/live/wind_pro_1581F5FJC24BW00D5JP3"},"msg":""}
+23:09:28.426 - DEBUG - Using selector: EpollSelector
+23:09:28.450 - DEBUG - = connection is CONNECTING
+23:09:28.500 - DEBUG - > GET /socket/connect/5/e1e651c327ab44a38a2bae054764837e HTTP/1.1
+23:09:28.500 - DEBUG - > Host: all.xinkongan.com
+23:09:28.500 - DEBUG - > Upgrade: websocket
+23:09:28.500 - DEBUG - > Connection: Upgrade
+23:09:28.500 - DEBUG - > Sec-WebSocket-Key: CbXenhjpXaYLYxoS1zYrqw==
+23:09:28.500 - DEBUG - > Sec-WebSocket-Version: 13
+23:09:28.500 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+23:09:28.500 - DEBUG - > User-Agent: Python/3.12 websockets/15.0
+23:09:28.519 - DEBUG - < HTTP/1.1 101 
+23:09:28.519 - DEBUG - < Server: nginx/1.27.4
+23:09:28.519 - DEBUG - < Date: Tue, 04 Mar 2025 15:09:29 GMT
+23:09:28.519 - DEBUG - < Connection: upgrade
+23:09:28.519 - DEBUG - < Vary: Origin
+23:09:28.519 - DEBUG - < Vary: Access-Control-Request-Method
+23:09:28.519 - DEBUG - < Vary: Access-Control-Request-Headers
+23:09:28.519 - DEBUG - < trace-id: 
+23:09:28.519 - DEBUG - < Upgrade: websocket
+23:09:28.519 - DEBUG - < Sec-WebSocket-Accept: XJGwwj3XMoidivJd76liW2/09yY=
+23:09:28.519 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate;client_max_window_bits=15
+23:09:28.519 - DEBUG - < X-Content-Type-Options: nosniff
+23:09:28.519 - DEBUG - < X-XSS-Protection: 1; mode=block
+23:09:28.519 - DEBUG - < Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+23:09:28.519 - DEBUG - < Pragma: no-cache
+23:09:28.519 - DEBUG - < Expires: 0
+23:09:28.519 - DEBUG - = connection is OPEN
+23:09:28.519 - INFO - WebSocket连接成功建立
+23:09:32.250 - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+23:09:32.250 - DEBUG - = connection is CLOSING
+23:09:32.250 - INFO - 事件循环已停止
+23:09:32.350 - INFO - 已关闭连接
+23:09:39.402 - DEBUG - Authenticating with https://all.xinkongan.com/prod-api/admin-api/system/oauth2/token
+23:09:39.403 - DEBUG - Starting new HTTPS connection (1): all.xinkongan.com:443
+23:09:39.595 - DEBUG - https://all.xinkongan.com:443 "POST /prod-api/admin-api/system/oauth2/token HTTP/1.1" 200 None
+23:09:39.596 - DEBUG - Access Token Response Status Code: 200
+23:09:39.596 - INFO - 认证成功，获取到访问令牌: fd9eabc120c148e08940a357dfcede04, 刷新令牌: 3811a3d6f51a4b018495d27c38bb77eb, 过期时间: 37324799999
+23:09:39.597 - DEBUG - Starting new HTTPS connection (1): all.xinkongan.com:443
+23:09:39.597 - DEBUG - Using selector: EpollSelector
+23:09:39.623 - DEBUG - = connection is CONNECTING
+23:09:39.663 - DEBUG - > GET /socket/connect/5/fd9eabc120c148e08940a357dfcede04 HTTP/1.1
+23:09:39.663 - DEBUG - > Host: all.xinkongan.com
+23:09:39.663 - DEBUG - > Upgrade: websocket
+23:09:39.663 - DEBUG - > Connection: Upgrade
+23:09:39.663 - DEBUG - > Sec-WebSocket-Key: bys1ZAV+tjFvhcAJiCgfig==
+23:09:39.663 - DEBUG - > Sec-WebSocket-Version: 13
+23:09:39.663 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+23:09:39.663 - DEBUG - > User-Agent: Python/3.12 websockets/15.0
+23:09:39.677 - DEBUG - < HTTP/1.1 101 
+23:09:39.677 - DEBUG - < Server: nginx/1.27.4
+23:09:39.677 - DEBUG - < Date: Tue, 04 Mar 2025 15:09:40 GMT
+23:09:39.677 - DEBUG - < Connection: upgrade
+23:09:39.677 - DEBUG - < Vary: Origin
+23:09:39.677 - DEBUG - < Vary: Access-Control-Request-Method
+23:09:39.677 - DEBUG - < Vary: Access-Control-Request-Headers
+23:09:39.677 - DEBUG - < trace-id: 
+23:09:39.677 - DEBUG - < Upgrade: websocket
+23:09:39.677 - DEBUG - < Sec-WebSocket-Accept: u6juKXT+qwheYN/F3mdiIXzXQs0=
+23:09:39.678 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate;client_max_window_bits=15
+23:09:39.678 - DEBUG - < X-Content-Type-Options: nosniff
+23:09:39.678 - DEBUG - < X-XSS-Protection: 1; mode=block
+23:09:39.678 - DEBUG - < Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+23:09:39.678 - DEBUG - < Pragma: no-cache
+23:09:39.678 - DEBUG - < Expires: 0
+23:09:39.678 - DEBUG - = connection is OPEN
+23:09:39.678 - INFO - WebSocket连接成功建立
+23:09:39.684 - DEBUG - https://all.xinkongan.com:443 "GET /prod-api/open-api/base/live/getRtmp?sn=1581F5FJC24BW00D5JP3 HTTP/1.1" 200 None
+23:09:39.684 - DEBUG - 直播地址响应状态码: 200
+23:09:39.684 - DEBUG - 直播地址响应内容: {"code":0,"data":{"url":"rtmp://alg.xinkongan.com/live/wind_pro_1581F5FJC24BW00D5JP3"},"msg":""}
+23:09:39.684 - DEBUG - Using selector: EpollSelector
+23:09:39.708 - DEBUG - = connection is CONNECTING
+23:09:39.756 - DEBUG - > GET /socket/connect/5/fd9eabc120c148e08940a357dfcede04 HTTP/1.1
+23:09:39.756 - DEBUG - > Host: all.xinkongan.com
+23:09:39.756 - DEBUG - > Upgrade: websocket
+23:09:39.756 - DEBUG - > Connection: Upgrade
+23:09:39.756 - DEBUG - > Sec-WebSocket-Key: lceVnn0K7Waxga5Ybg0ETw==
+23:09:39.756 - DEBUG - > Sec-WebSocket-Version: 13
+23:09:39.756 - DEBUG - > Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+23:09:39.756 - DEBUG - > User-Agent: Python/3.12 websockets/15.0
+23:09:39.774 - DEBUG - < HTTP/1.1 101 
+23:09:39.774 - DEBUG - < Server: nginx/1.27.4
+23:09:39.774 - DEBUG - < Date: Tue, 04 Mar 2025 15:09:40 GMT
+23:09:39.774 - DEBUG - < Connection: upgrade
+23:09:39.774 - DEBUG - < Vary: Origin
+23:09:39.774 - DEBUG - < Vary: Access-Control-Request-Method
+23:09:39.774 - DEBUG - < Vary: Access-Control-Request-Headers
+23:09:39.774 - DEBUG - < trace-id: 
+23:09:39.774 - DEBUG - < Upgrade: websocket
+23:09:39.774 - DEBUG - < Sec-WebSocket-Accept: wxTB3m2JAAtcnCCOzmfY0K8FnWc=
+23:09:39.774 - DEBUG - < Sec-WebSocket-Extensions: permessage-deflate;client_max_window_bits=15
+23:09:39.774 - DEBUG - < X-Content-Type-Options: nosniff
+23:09:39.774 - DEBUG - < X-XSS-Protection: 1; mode=block
+23:09:39.774 - DEBUG - < Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+23:09:39.774 - DEBUG - < Pragma: no-cache
+23:09:39.774 - DEBUG - < Expires: 0
+23:09:39.774 - DEBUG - = connection is OPEN
+23:09:39.775 - INFO - WebSocket连接成功建立
+23:09:41.848 - DEBUG - > CLOSE 1000 (OK) [2 bytes]
+23:09:41.848 - DEBUG - = connection is CLOSING
+23:09:41.848 - INFO - 事件循环已停止
+23:09:41.948 - INFO - 已关闭连接

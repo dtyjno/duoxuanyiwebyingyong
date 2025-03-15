@@ -1,0 +1,343 @@
+10:56:18.495 - CLIENT - INFO - Drone system initializing...
+10:56:18.495 - CLIENT - INFO - Loaded config from config/default.yaml
+10:57:56.010 - CLIENT - INFO - Drone system initializing...
+10:57:56.010 - CLIENT - INFO - Loaded config from config/default.yaml
+11:03:07.211 - CLIENT - INFO - Drone system initializing...
+11:03:07.212 - CLIENT - INFO - Loaded config from config/default.yaml
+11:06:07.957 - CLIENT - INFO - Drone system initializing...
+11:06:07.959 - CLIENT - INFO - Loaded config from config/default.yaml
+11:06:44.174 - CLIENT - INFO - Drone system initializing...
+11:06:44.175 - CLIENT - INFO - Loaded config from config/default.yaml
+11:06:44.201 - CLIENT - INFO - Started process: VisionProcess (PID: 34440)
+11:06:44.202 - CLIENT - INFO - Started process: ControlProcess (PID: 34441)
+11:06:44.202 - CLIENT - INFO - Drone system operational
+11:06:45.934 - CLIENT - ERROR - Process VisionProcess died unexpectedly
+11:06:45.934 - CLIENT - INFO - Initiating shutdown sequence...
+11:06:45.935 - CLIENT - INFO - System shutdown completed
+11:08:52.619 - CLIENT - INFO - Drone system initializing...
+11:08:52.619 - CLIENT - INFO - Loaded config from config/default.yaml
+11:08:52.626 - CLIENT - INFO - Started process: VisionProcess (PID: 35218)
+11:08:52.627 - CLIENT - INFO - Vision pipeline started
+11:08:52.627 - CLIENT - INFO - Vision pipeline running
+11:08:52.627 - CLIENT - INFO - Started process: ControlProcess (PID: 35219)
+11:08:52.627 - CLIENT - INFO - Drone system operational
+11:08:52.628 - CLIENT - INFO - Starting flight control loop
+11:08:52.628 - CLIENT - INFO - Control loop running
+11:08:53.627 - CLIENT - INFO - Vision pipeline running
+11:08:53.629 - CLIENT - INFO - Control loop running
+11:08:54.628 - CLIENT - INFO - Vision pipeline running
+11:08:54.629 - CLIENT - INFO - Control loop running
+11:08:55.628 - CLIENT - INFO - Vision pipeline running
+11:08:55.630 - CLIENT - INFO - Control loop running
+11:08:56.628 - CLIENT - INFO - Vision pipeline running
+11:08:56.642 - CLIENT - INFO - Control loop running
+11:08:58.391 - CLIENT - INFO - Vision pipeline running
+11:08:58.405 - CLIENT - INFO - Control loop running
+11:08:59.391 - CLIENT - INFO - Vision pipeline running
+11:08:59.405 - CLIENT - INFO - Control loop running
+11:09:00.391 - CLIENT - INFO - Vision pipeline running
+11:09:00.405 - CLIENT - INFO - Control loop running
+11:09:01.392 - CLIENT - INFO - Vision pipeline running
+11:09:01.406 - CLIENT - INFO - Control loop running
+11:09:01.734 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:09:01.734 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:09:01.734 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:09:01.734 - CLIENT - INFO - Initiating shutdown sequence...
+11:09:01.734 - CLIENT - INFO - Initiating shutdown sequence...
+11:09:01.734 - CLIENT - WARNING - Received signal 15, initiating shutdown
+11:09:01.734 - CLIENT - ERROR - Control loop failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/control/controller.py", line 109, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 137, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 124, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:09:01.747 - CLIENT - INFO - Initiating shutdown sequence...
+11:09:01.747 - CLIENT - ERROR - Vision pipeline failed: 'NoneType' object has no attribute 'terminate'
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/vision/pipeline.py", line 138, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 137, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    p.terminate()
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 133, in terminate
+    self._popen.terminate()
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'terminate'
+11:09:01.749 - CLIENT - INFO - Terminated process: VisionProcess
+11:09:01.749 - CLIENT - INFO - System shutdown completed
+11:10:05.708 - CLIENT - INFO - Drone system initializing...
+11:10:05.709 - CLIENT - INFO - Loaded config from config/default.yaml
+11:10:05.715 - CLIENT - INFO - Started process: VisionProcess (PID: 35692)
+11:10:05.716 - CLIENT - INFO - Vision pipeline started
+11:10:05.716 - CLIENT - INFO - Vision pipeline running
+11:10:05.716 - CLIENT - INFO - Started process: ControlProcess (PID: 35693)
+11:10:05.716 - CLIENT - INFO - Drone system operational
+11:10:05.717 - CLIENT - INFO - Starting flight control loop
+11:10:05.717 - CLIENT - INFO - Control loop running
+11:10:06.716 - CLIENT - INFO - Vision pipeline running
+11:10:06.717 - CLIENT - INFO - Control loop running
+11:10:07.389 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:10:07.389 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:10:07.389 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:10:07.389 - CLIENT - INFO - Initiating shutdown sequence...
+11:10:07.389 - CLIENT - INFO - Initiating shutdown sequence...
+11:10:07.389 - CLIENT - INFO - Initiating shutdown sequence...
+11:10:07.389 - CLIENT - WARNING - Received signal 15, initiating shutdown
+11:10:07.389 - CLIENT - INFO - Initiating shutdown sequence...
+11:10:07.389 - CLIENT - ERROR - Control loop failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/control/controller.py", line 109, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 137, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 124, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:10:07.392 - CLIENT - INFO - Terminated process: VisionProcess
+11:10:07.392 - CLIENT - INFO - System shutdown completed
+11:11:45.918 - CLIENT - INFO - Drone system initializing...
+11:11:45.919 - CLIENT - INFO - Loaded config from config/default.yaml
+11:11:45.926 - CLIENT - INFO - Started process: VisionProcess (PID: 36326)
+11:11:45.926 - CLIENT - INFO - Vision pipeline started
+11:11:45.927 - CLIENT - INFO - Vision pipeline running
+11:11:45.927 - CLIENT - INFO - Started process: ControlProcess (PID: 36327)
+11:11:45.927 - CLIENT - INFO - Drone system operational
+11:11:45.928 - CLIENT - INFO - Starting flight control loop
+11:11:45.928 - CLIENT - INFO - Control loop running
+11:11:46.927 - CLIENT - INFO - Vision pipeline running
+11:11:46.928 - CLIENT - INFO - Control loop running
+11:11:47.927 - CLIENT - INFO - Vision pipeline running
+11:11:47.928 - CLIENT - INFO - Control loop running
+11:11:48.927 - CLIENT - INFO - Vision pipeline running
+11:11:48.928 - CLIENT - INFO - Control loop running
+11:11:49.928 - CLIENT - INFO - Vision pipeline running
+11:11:49.929 - CLIENT - INFO - Control loop running
+11:11:50.928 - CLIENT - INFO - Vision pipeline running
+11:11:50.929 - CLIENT - INFO - Control loop running
+11:11:51.027 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:11:51.027 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:11:51.027 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:11:51.027 - CLIENT - INFO - Initiating shutdown sequence...
+11:11:51.027 - CLIENT - INFO - Initiating shutdown sequence...
+11:11:51.027 - CLIENT - INFO - Initiating shutdown sequence...
+11:11:51.028 - CLIENT - WARNING - Received signal 15, initiating shutdown
+11:11:51.028 - CLIENT - INFO - Initiating shutdown sequence...
+11:11:51.028 - CLIENT - ERROR - Control loop failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/control/controller.py", line 109, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 138, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:11:51.031 - CLIENT - INFO - Terminated process: VisionProcess
+11:11:51.031 - CLIENT - INFO - System shutdown completed
+11:14:37.708 - CLIENT - INFO - Drone system initializing...
+11:14:37.710 - CLIENT - INFO - Loaded config from config/default.yaml
+11:14:37.729 - CLIENT - INFO - Started process: VisionProcess (PID: 37398)
+11:14:37.729 - CLIENT - INFO - Vision pipeline started
+11:14:37.729 - CLIENT - INFO - Vision pipeline running
+11:14:37.730 - CLIENT - INFO - Started process: ControlProcess (PID: 37399)
+11:14:37.730 - CLIENT - INFO - Drone system operational
+11:14:37.731 - CLIENT - INFO - Starting flight control loop
+11:14:37.731 - CLIENT - INFO - Control loop running
+11:14:38.729 - CLIENT - INFO - Vision pipeline running
+11:14:38.731 - CLIENT - INFO - Control loop running
+11:14:39.730 - CLIENT - INFO - Vision pipeline running
+11:14:39.731 - CLIENT - INFO - Control loop running
+11:14:40.730 - CLIENT - INFO - Vision pipeline running
+11:14:40.732 - CLIENT - INFO - Control loop running
+11:14:41.292 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:14:41.292 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:14:41.292 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:14:41.292 - CLIENT - INFO - Initiating shutdown sequence...
+11:14:41.292 - CLIENT - INFO - Initiating shutdown sequence...
+11:14:41.292 - CLIENT - INFO - Initiating shutdown sequence...
+11:14:41.292 - CLIENT - WARNING - Received signal 15, initiating shutdown
+11:14:41.292 - CLIENT - INFO - Initiating shutdown sequence...
+11:14:41.292 - CLIENT - ERROR - Failed to terminate process VisionProcess: 'NoneType' object has no attribute 'terminate'
+11:14:41.292 - CLIENT - ERROR - Control loop failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/control/controller.py", line 109, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:14:41.292 - CLIENT - ERROR - Vision pipeline failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/main.py", line 127, in _shutdown
+    p.terminate()
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 133, in terminate
+    self._popen.terminate()
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'terminate'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/vision/pipeline.py", line 138, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 131, in _shutdown
+    self.logger.error(f"Failed to terminate process {p.name}: {str(e)}")
+  File "/home/linhao/miniconda3/lib/python3.12/logging/__init__.py", line 1568, in error
+    self._log(ERROR, msg, args, **kwargs)
+  File "/home/linhao/miniconda3/lib/python3.12/logging/__init__.py", line 1682, in _log
+    record = self.makeRecord(self.name, level, fn, lno, msg, args,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/logging/__init__.py", line 1651, in makeRecord
+    rv = _logRecordFactory(name, level, fn, lno, msg, args, exc_info, func,
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/logging/__init__.py", line 332, in __init__
+    self.filename = os.path.basename(pathname)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen posixpath>", line 172, in basename
+  File "<frozen posixpath>", line 41, in _get_sep
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:14:41.297 - CLIENT - INFO - Terminated process: VisionProcess
+11:14:41.297 - CLIENT - INFO - System shutdown completed
+11:15:00.844 - CLIENT - INFO - Drone system initializing...
+11:15:00.845 - CLIENT - INFO - Loaded config from config/default.yaml
+11:15:00.851 - CLIENT - INFO - Started process: VisionProcess (PID: 37582)
+11:15:00.852 - CLIENT - INFO - Vision pipeline started
+11:15:00.852 - CLIENT - INFO - Vision pipeline running
+11:15:00.853 - CLIENT - INFO - Started process: ControlProcess (PID: 37583)
+11:15:00.853 - CLIENT - INFO - Drone system operational
+11:15:00.854 - CLIENT - INFO - Starting flight control loop
+11:15:00.854 - CLIENT - INFO - Control loop running
+11:15:01.853 - CLIENT - INFO - Vision pipeline running
+11:15:01.854 - CLIENT - INFO - Control loop running
+11:15:02.549 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:15:02.549 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:15:02.549 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:15:02.549 - CLIENT - INFO - Initiating shutdown sequence...
+11:15:02.549 - CLIENT - INFO - Initiating shutdown sequence...
+11:15:02.549 - CLIENT - INFO - Initiating shutdown sequence...
+11:15:02.549 - CLIENT - ERROR - Failed to terminate process VisionProcess: 'NoneType' object has no attribute 'terminate'
+11:15:02.550 - CLIENT - WARNING - Received signal 15, initiating shutdown
+11:15:02.549 - CLIENT - ERROR - Control loop failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/control/controller.py", line 109, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:15:02.562 - CLIENT - ERROR - Vision pipeline failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/vision/pipeline.py", line 138, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:15:02.563 - CLIENT - INFO - Terminated process: VisionProcess
+11:15:02.563 - CLIENT - INFO - System shutdown completed
+11:23:07.591 - CLIENT - INFO - Drone system initializing...
+11:23:07.592 - CLIENT - INFO - Loaded config from config/default.yaml
+11:23:07.599 - CLIENT - INFO - Started process: VisionProcess (PID: 40405)
+11:23:07.600 - CLIENT - INFO - Vision pipeline started
+11:23:07.600 - CLIENT - INFO - Vision pipeline running
+11:23:07.600 - CLIENT - INFO - Started process: ControlProcess (PID: 40406)
+11:23:07.601 - CLIENT - INFO - Drone system operational
+11:23:07.601 - CLIENT - INFO - Starting flight control loop
+11:23:07.601 - CLIENT - INFO - Control loop running
+11:23:08.600 - CLIENT - INFO - Vision pipeline running
+11:23:08.601 - CLIENT - INFO - Control loop running
+11:23:09.587 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:23:09.587 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:23:09.587 - CLIENT - WARNING - Received signal 2, initiating shutdown
+11:23:09.587 - CLIENT - INFO - Initiating shutdown sequence...
+11:23:09.587 - CLIENT - INFO - Initiating shutdown sequence...
+11:23:09.587 - CLIENT - INFO - Initiating shutdown sequence...
+11:23:09.587 - CLIENT - WARNING - Received signal 15, initiating shutdown
+11:23:09.587 - CLIENT - INFO - Initiating shutdown sequence...
+11:23:09.587 - CLIENT - ERROR - Failed to terminate process VisionProcess: 'NoneType' object has no attribute 'terminate'
+11:23:09.587 - CLIENT - ERROR - Control loop failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/control/controller.py", line 109, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:23:09.587 - CLIENT - ERROR - Vision pipeline failed: can only test a child process
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/main.py", line 127, in _shutdown
+    p.terminate()
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 133, in terminate
+    self._popen.terminate()
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'terminate'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/linhao/code/py/drone-system/src/vision/pipeline.py", line 138, in run
+    time.sleep(1)
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 131, in _shutdown
+    self.logger.error(f"Failed to terminate process {p.name}: {str(e)}")
+                                                     ^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 189, in name
+    @property
+    
+  File "/home/linhao/code/py/drone-system/main.py", line 141, in _signal_handler
+    self._shutdown()
+  File "/home/linhao/code/py/drone-system/main.py", line 125, in _shutdown
+    if p.is_alive():
+       ^^^^^^^^^^^^
+  File "/home/linhao/miniconda3/lib/python3.12/multiprocessing/process.py", line 160, in is_alive
+    assert self._parent_pid == os.getpid(), 'can only test a child process'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: can only test a child process
+11:23:09.589 - CLIENT - INFO - Terminated process: VisionProcess
+11:23:09.590 - CLIENT - INFO - System shutdown completed
